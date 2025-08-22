@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "PORT=3001 bun run --watch src/index.ts",
-    "build": "bun build src/index.ts --outdir dist --target bun",
+    "dev": "vite",
+    "build": "vite build",
     "start": "PORT=3001 bun run src/index.ts",
     "lint": "oxlint"
   },
@@ -13,8 +13,10 @@
     "hono": "^4.9.1"
   },
   "devDependencies": {
+    "@hono/vite-dev-server": "^0.20.1",
     "@repo/typescript-config": "*",
     "bun-types": "^1.2.20",
-    "typescript": "5.5.4"
+    "typescript": "5.5.4",
+    "vite": "^5.0.0"
   }
 }
