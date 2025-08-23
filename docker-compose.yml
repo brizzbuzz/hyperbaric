@@ -19,7 +19,7 @@ services:
       - hyperbaric-network
     restart: unless-stopped
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U hyperbaric_user -d hyperbaric"]
+      test: ["CMD-SHELL", "pg_isready -U hyperbaric_admin -d hyperbaric"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -49,8 +49,8 @@ configs:
       CREATE DATABASE chronicler;
 
       -- Grant privileges to the main user for all databases
-      GRANT ALL PRIVILEGES ON DATABASE null_horizon TO hyperbaric_user;
-      GRANT ALL PRIVILEGES ON DATABASE chronicler TO hyperbaric_user;
+      GRANT ALL PRIVILEGES ON DATABASE null_horizon TO hyperbaric_admin;
+      GRANT ALL PRIVILEGES ON DATABASE chronicler TO hyperbaric_admin;
 
       -- Optional: Create schemas within databases for organization
       \c null_horizon;
