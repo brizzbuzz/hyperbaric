@@ -11,6 +11,10 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    configs:
+      - source: init_databases
+        target: /docker-entrypoint-initdb.d/init-databases.sql
+        mode: 0755
     networks:
       - hyperbaric-network
     restart: unless-stopped
@@ -36,6 +40,26 @@ services:
       interval: 30s
       timeout: 10s
       retries: 3
+
+configs:
+  init_databases:
+    content: |
+      -- Create additional databases for the hyperbaric project
+      CREATE DATABASE null_horizon;
+      CREATE DATABASE chronicler;
+
+      -- Grant privileges to the main user for all databases
+      GRANT ALL PRIVILEGES ON DATABASE null_horizon TO hyperbaric_user;
+      GRANT ALL PRIVILEGES ON DATABASE chronicler TO hyperbaric_user;
+
+      -- Optional: Create schemas within databases for organization
+      \c null_horizon;
+      CREATE SCHEMA IF NOT EXISTS core;
+      CREATE SCHEMA IF NOT EXISTS analytics;
+
+      \c chronicler;
+      CREATE SCHEMA IF NOT EXISTS events;
+      CREATE SCHEMA IF NOT EXISTS audit;
 
 volumes:
   postgres_data:
