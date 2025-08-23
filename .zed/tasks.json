@@ -1,0 +1,6 @@
+[
+  {
+    "label": "Dev Server",
+    "command": "bun dev"
+  }
+]
