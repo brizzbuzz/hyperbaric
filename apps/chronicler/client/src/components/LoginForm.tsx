@@ -51,7 +51,9 @@ export default function LoginForm({ onToggleForm }: LoginFormProps) {
             id="email"
             type="email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
             placeholder="Enter your email address"
             required
             disabled={loading}
@@ -65,7 +67,9 @@ export default function LoginForm({ onToggleForm }: LoginFormProps) {
               id="password"
               type={showPassword ? "text" : "password"}
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
               placeholder="Enter your password"
               required
               disabled={loading}
@@ -73,7 +77,9 @@ export default function LoginForm({ onToggleForm }: LoginFormProps) {
             <button
               type="button"
               className="password-toggle"
-              onClick={() => setShowPassword(!showPassword)}
+              onClick={() => {
+                setShowPassword(!showPassword);
+              }}
               aria-label={showPassword ? "Hide password" : "Show password"}
               disabled={loading}
             >

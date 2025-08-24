@@ -5,6 +5,7 @@
       "name": "with-vite",
       "devDependencies": {
         "oxlint": "^1.12.0",
+        "oxlint-tsgolint": "^0.0.4",
         "prettier": "^3.2.5",
         "turbo": "^2.5.6",
       },

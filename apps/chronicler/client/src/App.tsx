@@ -30,7 +30,7 @@ function App() {
       }
     };
 
-    checkAuth();
+    void checkAuth();
   }, []);
 
   if (loading) {
@@ -56,9 +56,17 @@ function App() {
       <div className="auth-container">
         <h1>Chronicler</h1>
         {isSignUp ? (
-          <SignUpForm onToggleForm={() => setIsSignUp(false)} />
+          <SignUpForm
+            onToggleForm={() => {
+              setIsSignUp(false);
+            }}
+          />
         ) : (
-          <LoginForm onToggleForm={() => setIsSignUp(true)} />
+          <LoginForm
+            onToggleForm={() => {
+              setIsSignUp(true);
+            }}
+          />
         )}
       </div>
     </div>
