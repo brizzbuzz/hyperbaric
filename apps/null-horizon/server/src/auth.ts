@@ -26,7 +26,7 @@ if (!process.env.BETTER_AUTH_SECRET) {
 export const auth = betterAuth({
   database: pool,
   secret: process.env.BETTER_AUTH_SECRET,
-  // trustedOrigins: ["http://localhost:5173"],
+  trustedOrigins: ["http://localhost:3000"],
   emailAndPassword: {
     enabled: true,
   },

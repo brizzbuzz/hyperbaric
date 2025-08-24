@@ -14,7 +14,7 @@ app.get("/", (c) => c.text("Hello World!"));
 app.use(
   "*",
   cors({
-    origin: "http://localhost:5173",
+    origin: "http://localhost:3000",
     allowHeaders: ["Content-Type", "Authorization"],
     allowMethods: ["POST", "GET", "OPTIONS"],
     exposeHeaders: ["Content-Length"],
