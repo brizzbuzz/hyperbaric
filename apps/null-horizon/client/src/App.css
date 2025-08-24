@@ -76,46 +76,6 @@
   cursor: not-allowed;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #61dafb;
-  color: #282c34;
-  cursor: pointer;
-  transition: all 0.25s;
-  width: 100%;
-  margin-bottom: 1rem;
-}
-
-button:hover {
-  background-color: #4fa8c5;
-}
-
-button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-.link-button {
-  background: none;
-  border: none;
-  color: #61dafb;
-  text-decoration: underline;
-  cursor: pointer;
-  padding: 0;
-  width: auto;
-  margin: 0;
-}
-
-.link-button:hover {
-  color: #4fa8c5;
-  background: none;
-}
-
 .error {
   background-color: #ff6b6b;
   color: white;
@@ -144,18 +104,6 @@ button:disabled {
   margin: 0;
   color: #61dafb;
   font-size: 2rem;
-}
-
-.sign-out-button {
-  background-color: #ff6b6b;
-  color: white;
-  padding: 0.5rem 1rem;
-  width: auto;
-  margin: 0;
-}
-
-.sign-out-button:hover {
-  background-color: #e55a5a;
 }
 
 .dashboard-content {
