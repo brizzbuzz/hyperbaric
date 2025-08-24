@@ -1,97 +1,20 @@
-/* Cyberpunk Neofuturistic CSS - Toned Down for Readability */
-@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap");
+/* Clean Base Styles for Chronicler */
 
+/* CSS Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Base Typography and Layout */
 :root {
-  /* Typography - Clean cyberpunk */
-  font-family:
-    "Inter",
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    sans-serif;
-  line-height: 1.6;
-  font-weight: 400;
-  font-size: 16px;
-
-  /* Classic Cyberpunk Color Scheme */
-  --color-primary: #00d9ff;
-  --color-primary-hover: #00c3e6;
-  --color-primary-light: #33e0ff;
-  --color-primary-dark: #00b8e6;
-
-  --color-accent: #ff0099;
-  --color-accent-hover: #e6008a;
-  --color-accent-light: #ff33aa;
-
-  --color-secondary: #bb00ff;
-  --color-secondary-hover: #a600e6;
-
-  --color-warning: #ffaa00;
-  --color-danger: #ff0066;
-
-  /* Dark cyberpunk backgrounds - more subtle */
-  --color-bg-primary: #0a0a0f;
-  --color-bg-secondary: #1a1a24;
-  --color-bg-tertiary: #252530;
-  --color-bg-surface: #2a2a3a;
-
-  /* Subtle glow effects */
-  --glow-primary: rgba(0, 217, 255, 0.15);
-  --glow-accent: rgba(255, 0, 153, 0.15);
-  --glow-secondary: rgba(187, 0, 255, 0.15);
-
-  /* Readable text colors */
-  --color-text-primary: #ffffff;
-  --color-text-secondary: #b3b3cc;
-  --color-text-muted: #8080a0;
-
-  /* Clean borders */
-  --color-border: #404060;
-  --color-border-light: #505070;
-  --color-border-accent: #00d9ff;
-
-  /* Subtle shadows */
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.2);
-  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.3);
-  --shadow-xl: 0 16px 40px rgba(0, 0, 0, 0.4);
-
-  /* Minimal glow for accents only */
-  --glow-subtle: 0 0 8px var(--glow-primary);
-  --glow-accent-subtle: 0 0 8px var(--glow-accent);
-
-  /* Spacing */
-  --spacing-xs: 0.25rem;
-  --spacing-sm: 0.5rem;
-  --spacing-md: 1rem;
-  --spacing-lg: 1.5rem;
-  --spacing-xl: 2rem;
-  --spacing-2xl: 3rem;
-
-  /* Modern radius */
-  --radius-sm: 0.375rem;
-  --radius-md: 0.5rem;
-  --radius-lg: 0.75rem;
-  --radius-xl: 1rem;
-
-  /* Smooth transitions */
-  --transition-fast: 150ms ease-out;
-  --transition-normal: 250ms ease-out;
-  --transition-slow: 350ms ease-out;
-
-  /* Typography improvements */
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
-}
-
-/* Reset and base styles */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+  line-height: 1.6;
 }
 
 html {
@@ -103,65 +26,53 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
-  background: var(--color-bg-primary);
-  color: var(--color-text-primary);
   line-height: 1.6;
   overflow-x: hidden;
+  font-family: var(
+    --ui-font-family,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Roboto",
+    sans-serif
+  );
+  color: var(--ui-color-text-primary, #1a1a1a);
+  background: var(--ui-color-background, #ffffff);
 }
 
-/* Typography with Orbitron for headings */
+/* Typography */
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  font-family: "Orbitron", monospace;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  line-height: 1.2;
-}
-
-h1 {
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 900;
-  color: var(--color-primary);
-  text-transform: uppercase;
-}
-
-h2 {
-  font-size: clamp(1.5rem, 3vw, 2rem);
-  color: var(--color-text-primary);
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
-h3 {
-  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
-  color: var(--color-secondary);
+  font-family: var(--ui-font-family-heading, inherit);
+  font-weight: var(--ui-font-weight-semibold, 600);
+  line-height: var(--ui-line-height-tight, 1.25);
+  color: var(--ui-color-text-primary, #1a1a1a);
 }
 
 p {
-  color: var(--color-text-secondary);
-  margin-bottom: var(--spacing-md);
-  font-family: "Inter", sans-serif;
+  color: var(--ui-color-text-secondary, #4a4a4a);
+  margin-bottom: var(--ui-spacing-4, 1rem);
+  line-height: var(--ui-line-height-normal, 1.6);
 }
 
-/* Clean links */
+/* Links */
 a {
-  color: var(--color-primary);
+  color: var(--ui-color-primary, #3b82f6);
   text-decoration: none;
-  transition: color var(--transition-fast);
-  position: relative;
+  transition: var(--ui-transition, all 150ms ease);
 }
 
 a:hover {
-  color: var(--color-accent);
+  color: var(--ui-color-primary-hover, #2563eb);
 }
 
 /* Focus styles */
 *:focus {
-  outline: 2px solid var(--color-primary);
+  outline: 2px solid var(--ui-color-focus, #3b82f6);
   outline-offset: 2px;
 }
 
@@ -172,7 +83,17 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--spacing-md);
+  padding: var(--ui-spacing-4, 1rem);
+}
+
+/* Form elements base styles */
+input,
+textarea,
+select,
+button {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
 }
 
 /* Utility classes */
@@ -180,7 +101,7 @@ a:hover {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 var(--spacing-md);
+  padding: 0 var(--ui-spacing-4, 1rem);
 }
 
 .sr-only {
@@ -195,52 +116,10 @@ a:hover {
   border: 0;
 }
 
-/* Simple animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(1rem);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideInFromBottom {
-  from {
-    opacity: 0;
-    transform: translateY(2rem);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes pulse {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.7;
-  }
-}
-
 /* Responsive design */
 @media (max-width: 640px) {
   #root {
-    padding: var(--spacing-sm);
-  }
-
-  h1 {
-    font-size: 2.5rem;
-    letter-spacing: 0.03em;
-  }
-
-  h2 {
-    font-size: 1.5rem;
+    padding: var(--ui-spacing-2, 0.5rem);
   }
 
   body {
@@ -248,14 +127,7 @@ a:hover {
   }
 }
 
-/* Dark mode enhancements */
-@media (prefers-color-scheme: dark) {
-  :root {
-    color-scheme: dark;
-  }
-}
-
-/* Reduced motion */
+/* Accessibility */
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;
@@ -268,11 +140,20 @@ a:hover {
   }
 }
 
-/* High contrast mode */
 @media (prefers-contrast: high) {
-  :root {
-    --color-border: var(--color-primary);
-    --color-text-primary: #ffffff;
-    --color-text-secondary: var(--color-primary);
+  *:focus {
+    outline: 3px solid;
+  }
+}
+
+/* Print styles */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+
+  #root {
+    min-height: auto;
   }
 }
