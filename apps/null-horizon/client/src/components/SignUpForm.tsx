@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { authClient } from "../lib/auth";
+import { Button } from "@repo/ui";
 
 interface SignUpFormProps {
   onToggleForm: () => void;
@@ -80,16 +81,16 @@ export default function SignUpForm({ onToggleForm }: SignUpFormProps) {
           />
         </div>
 
-        <button type="submit" disabled={loading}>
-          {loading ? "Creating account..." : "Sign Up"}
-        </button>
+        <Button type="submit" disabled={loading} loading={loading}>
+          Sign Up
+        </Button>
       </form>
 
       <p>
         Already have an account?{" "}
-        <button type="button" className="link-button" onClick={onToggleForm}>
+        <Button type="button" variant="ghost" onClick={onToggleForm}>
           Sign in
-        </button>
+        </Button>
       </p>
     </div>
   );
