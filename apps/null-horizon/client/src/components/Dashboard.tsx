@@ -24,10 +24,12 @@ export default function Dashboard({ user }: DashboardProps) {
   return (
     <div className="dashboard">
       <header className="dashboard-header">
-        <h1>Welcome, {user.name}!</h1>
-        <Button onClick={handleSignOut} variant="danger" size="medium">
-          Sign Out
-        </Button>
+        <div className="dashboard-header-content">
+          <h1>Welcome, {user.name}!</h1>
+          <Button onClick={handleSignOut} variant="danger" size="medium">
+            Sign Out
+          </Button>
+        </div>
       </header>
 
       <main className="dashboard-content">
