@@ -25,9 +25,9 @@ html {
 body {
   margin: 0;
   padding: 0;
-  min-height: 100vh;
+  height: 100vh;
   line-height: 1.6;
-  overflow-x: hidden;
+  overflow: hidden;
   font-family: var(
     --ui-font-family,
     -apple-system,
@@ -78,12 +78,13 @@ a:hover {
 
 /* Root container */
 #root {
-  min-height: 100vh;
+  height: 100vh;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: var(--ui-spacing-4, 1rem);
+  box-sizing: border-box;
 }
 
 /* Form elements base styles */
@@ -151,9 +152,11 @@ button {
   body {
     background: white !important;
     color: black !important;
+    height: auto !important;
+    overflow: visible !important;
   }
 
   #root {
-    min-height: auto;
+    height: auto;
   }
 }

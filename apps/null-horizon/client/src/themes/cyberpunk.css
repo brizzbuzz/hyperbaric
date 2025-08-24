@@ -1,10 +1,10 @@
 /* Cyberpunk Theme for Null Horizon */
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Exo+2:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Exo+2:wght@300;400;500;600;700&display=swap");
 
 :root {
   /* Typography */
-  --ui-font-family: 'Exo 2', 'Orbitron', monospace, system-ui;
-  --ui-font-family-heading: 'Orbitron', monospace, system-ui;
+  --ui-font-family: "Exo 2", "Orbitron", monospace, system-ui;
+  --ui-font-family-heading: "Orbitron", monospace, system-ui;
   --ui-font-weight-normal: 400;
   --ui-font-weight-medium: 500;
   --ui-font-weight-semibold: 600;
@@ -86,21 +86,16 @@
   /* Shadows - Neon Glows */
   --ui-shadow-sm: 0 0 4px rgba(0, 255, 255, 0.3), 0 1px 2px rgba(0, 0, 0, 0.5);
   --ui-shadow-md:
-    0 0 8px rgba(0, 255, 255, 0.4),
-    0 4px 6px -1px rgba(0, 0, 0, 0.3),
+    0 0 8px rgba(0, 255, 255, 0.4), 0 4px 6px -1px rgba(0, 0, 0, 0.3),
     0 2px 4px -2px rgba(0, 0, 0, 0.3);
   --ui-shadow-lg:
-    0 0 12px rgba(0, 255, 255, 0.5),
-    0 10px 15px -3px rgba(0, 0, 0, 0.4),
+    0 0 12px rgba(0, 255, 255, 0.5), 0 10px 15px -3px rgba(0, 0, 0, 0.4),
     0 4px 6px -4px rgba(0, 0, 0, 0.4);
   --ui-shadow-neon:
-    0 0 5px rgba(0, 255, 255, 0.8),
-    0 0 10px rgba(0, 255, 255, 0.6),
-    0 0 20px rgba(0, 255, 255, 0.4),
-    0 0 40px rgba(0, 255, 255, 0.2);
+    0 0 5px rgba(0, 255, 255, 0.8), 0 0 10px rgba(0, 255, 255, 0.6),
+    0 0 20px rgba(0, 255, 255, 0.4), 0 0 40px rgba(0, 255, 255, 0.2);
   --ui-shadow-neon-pink:
-    0 0 5px rgba(255, 0, 153, 0.8),
-    0 0 10px rgba(255, 0, 153, 0.6),
+    0 0 5px rgba(255, 0, 153, 0.8), 0 0 10px rgba(255, 0, 153, 0.6),
     0 0 20px rgba(255, 0, 153, 0.4);
 
   /* Transitions */
@@ -120,18 +115,20 @@ body {
   background: linear-gradient(135deg, #0a0a0f 0%, #1a1a24 100%);
   color: var(--ui-color-text-primary);
   font-family: var(--ui-font-family);
-  min-height: 100vh;
-  overflow-x: hidden;
+  height: 100vh;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
 }
 
 /* Animated Background Grid */
 body::before {
-  content: '';
+  content: "";
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   background-image:
     linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
     linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
@@ -142,8 +139,12 @@ body::before {
 }
 
 @keyframes grid-move {
-  0% { transform: translate(0, 0); }
-  100% { transform: translate(50px, 50px); }
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(50px, 50px);
+  }
 }
 
 /* Cyberpunk Button Enhancements */
@@ -158,13 +159,18 @@ body::before {
 }
 
 .repo-button--primary::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
   transition: left 500ms;
 }
 
@@ -213,7 +219,9 @@ body::before {
 }
 
 /* Form Elements */
-input, textarea, select {
+input,
+textarea,
+select {
   background: rgba(26, 26, 36, 0.8);
   border: 1px solid var(--ui-color-border);
   color: var(--ui-color-text-primary);
@@ -221,14 +229,21 @@ input, textarea, select {
   backdrop-filter: blur(8px);
 }
 
-input:focus, textarea:focus, select:focus {
+input:focus,
+textarea:focus,
+select:focus {
   outline: none;
   border-color: var(--ui-color-primary);
   box-shadow: 0 0 0 2px rgba(0, 255, 255, 0.2);
 }
 
 /* Headings */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--ui-font-family-heading);
   font-weight: var(--ui-font-weight-bold);
   text-transform: uppercase;
@@ -284,37 +299,90 @@ h1 {
 }
 
 @keyframes glitch {
-  0%, 100% { transform: translate(0); }
-  20% { transform: translate(-2px, 2px); }
-  40% { transform: translate(-2px, -2px); }
-  60% { transform: translate(2px, 2px); }
-  80% { transform: translate(2px, -2px); }
+  0%,
+  100% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
 }
 
 @keyframes glitch-1 {
-  0%, 100% { transform: translate(0); }
-  10% { transform: translate(-2px, -2px); }
-  20% { transform: translate(2px, 2px); }
-  30% { transform: translate(-2px, 2px); }
-  40% { transform: translate(2px, -2px); }
-  50% { transform: translate(-2px, -2px); }
-  60% { transform: translate(2px, 2px); }
-  70% { transform: translate(-2px, 2px); }
-  80% { transform: translate(2px, -2px); }
-  90% { transform: translate(-2px, -2px); }
+  0%,
+  100% {
+    transform: translate(0);
+  }
+  10% {
+    transform: translate(-2px, -2px);
+  }
+  20% {
+    transform: translate(2px, 2px);
+  }
+  30% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(2px, -2px);
+  }
+  50% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  70% {
+    transform: translate(-2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+  90% {
+    transform: translate(-2px, -2px);
+  }
 }
 
 @keyframes glitch-2 {
-  0%, 100% { transform: translate(0); }
-  10% { transform: translate(2px, 2px); }
-  20% { transform: translate(-2px, -2px); }
-  30% { transform: translate(2px, -2px); }
-  40% { transform: translate(-2px, 2px); }
-  50% { transform: translate(2px, 2px); }
-  60% { transform: translate(-2px, -2px); }
-  70% { transform: translate(2px, -2px); }
-  80% { transform: translate(-2px, 2px); }
-  90% { transform: translate(2px, 2px); }
+  0%,
+  100% {
+    transform: translate(0);
+  }
+  10% {
+    transform: translate(2px, 2px);
+  }
+  20% {
+    transform: translate(-2px, -2px);
+  }
+  30% {
+    transform: translate(2px, -2px);
+  }
+  40% {
+    transform: translate(-2px, 2px);
+  }
+  50% {
+    transform: translate(2px, 2px);
+  }
+  60% {
+    transform: translate(-2px, -2px);
+  }
+  70% {
+    transform: translate(2px, -2px);
+  }
+  80% {
+    transform: translate(-2px, 2px);
+  }
+  90% {
+    transform: translate(2px, 2px);
+  }
 }
 
 /* Scrollbar Styling */
@@ -327,12 +395,20 @@ h1 {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, var(--ui-color-primary), var(--ui-color-danger));
+  background: linear-gradient(
+    180deg,
+    var(--ui-color-primary),
+    var(--ui-color-danger)
+  );
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, var(--ui-color-primary-hover), var(--ui-color-danger-hover));
+  background: linear-gradient(
+    180deg,
+    var(--ui-color-primary-hover),
+    var(--ui-color-danger-hover)
+  );
 }
 
 /* Selection */
