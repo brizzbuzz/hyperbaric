@@ -16,7 +16,8 @@
     "src/**"
   ],
   "scripts": {
-    "lint": "oxlint",
+    "lint": "oxlint --type-aware",
+    "lint:fix": "oxlint --type-aware --fix",
     "type-check": "tsc --noEmit"
   },
   "dependencies": {

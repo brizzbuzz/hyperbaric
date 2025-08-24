@@ -24,7 +24,11 @@ const meta = {
       control: { type: "boolean" },
     },
   },
-  args: { onClick: () => console.log("Button clicked") },
+  args: {
+    onClick: () => {
+      // Button clicked action for storybook
+    },
+  },
 } satisfies Meta<typeof Button>;
 
 export default meta;

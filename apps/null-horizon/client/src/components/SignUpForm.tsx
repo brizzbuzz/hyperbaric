@@ -53,7 +53,9 @@ export default function SignUpForm({ onToggleForm }: SignUpFormProps) {
             id="name"
             type="text"
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={(e) => {
+              setName(e.target.value);
+            }}
             placeholder="Enter your full name"
             required
             disabled={loading}
@@ -66,7 +68,9 @@ export default function SignUpForm({ onToggleForm }: SignUpFormProps) {
             id="email"
             type="email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
             placeholder="Enter your email address"
             required
             disabled={loading}
@@ -80,7 +84,9 @@ export default function SignUpForm({ onToggleForm }: SignUpFormProps) {
               id="password"
               type={showPassword ? "text" : "password"}
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
               placeholder="Create a secure password"
               required
               disabled={loading}
@@ -88,7 +94,9 @@ export default function SignUpForm({ onToggleForm }: SignUpFormProps) {
             <button
               type="button"
               className="password-toggle"
-              onClick={() => setShowPassword(!showPassword)}
+              onClick={() => {
+                setShowPassword(!showPassword);
+              }}
               aria-label={showPassword ? "Hide password" : "Show password"}
               disabled={loading}
             >
