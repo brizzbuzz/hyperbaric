@@ -1,59 +1,4 @@
-/* Modern Button Component Styles */
-
-/* CSS Custom Properties for Button */
-.repo-button {
-  /* Base button properties */
-  --btn-font-family: inherit;
-  --btn-font-weight: 600;
-  --btn-font-size: 0.875rem;
-  --btn-line-height: 1.25rem;
-  --btn-letter-spacing: 0.025em;
-
-  /* Spacing */
-  --btn-padding-x: 1.5rem;
-  --btn-padding-y: 0.75rem;
-  --btn-border-radius: 0.5rem;
-  --btn-border-width: 1px;
-
-  /* Transitions */
-  --btn-transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
-
-  /* Shadow */
-  --btn-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --btn-shadow-hover:
-    0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
-  --btn-shadow-active: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
-
-  /* Colors */
-  --btn-primary-bg: #00d9ff;
-  --btn-primary-bg-hover: #00c3e6;
-  --btn-primary-bg-active: #00b8e6;
-  --btn-primary-text: #0a0a0f;
-  --btn-primary-border: #00d9ff;
-  --btn-primary-border-hover: #00c3e6;
-
-  --btn-secondary-bg: rgba(26, 26, 36, 0.8);
-  --btn-secondary-bg-hover: rgba(42, 42, 58, 0.9);
-  --btn-secondary-bg-active: rgba(64, 64, 96, 0.9);
-  --btn-secondary-text: #ffffff;
-  --btn-secondary-border: #404060;
-  --btn-secondary-border-hover: #505070;
-
-  --btn-danger-bg: #ff0099;
-  --btn-danger-bg-hover: #e6008a;
-  --btn-danger-bg-active: #cc0077;
-  --btn-danger-text: #ffffff;
-  --btn-danger-border: #ff0099;
-  --btn-danger-border-hover: #e6008a;
-
-  --btn-ghost-bg: transparent;
-  --btn-ghost-bg-hover: rgba(0, 217, 255, 0.1);
-  --btn-ghost-bg-active: rgba(0, 217, 255, 0.2);
-  --btn-ghost-text: #00d9ff;
-  --btn-ghost-text-hover: #00c3e6;
-  --btn-ghost-border: transparent;
-  --btn-ghost-border-hover: rgba(0, 217, 255, 0.2);
-}
+/* Theme-agnostic Button Component Styles */
 
 /* Base Button Styles */
 .repo-button {
@@ -63,22 +8,29 @@
   justify-content: center;
   gap: 0.5rem;
 
-  font-family: var(--btn-font-family);
-  font-weight: var(--btn-font-weight);
-  font-size: var(--btn-font-size);
-  line-height: var(--btn-line-height);
-  letter-spacing: var(--btn-letter-spacing);
+  font-family: var(
+    --ui-font-family,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Roboto",
+    sans-serif
+  );
+  font-weight: var(--ui-font-weight-medium, 500);
+  font-size: var(--ui-font-size-sm, 0.875rem);
+  line-height: var(--ui-line-height-tight, 1.25);
+  letter-spacing: var(--ui-letter-spacing, 0.025em);
   text-decoration: none;
   text-align: center;
   white-space: nowrap;
 
-  border: var(--btn-border-width) solid;
-  border-radius: var(--btn-border-radius);
+  border: var(--ui-border-width, 1px) solid;
+  border-radius: var(--ui-border-radius, 0.375rem);
   cursor: pointer;
   user-select: none;
 
-  transition: var(--btn-transition);
-  box-shadow: var(--btn-shadow);
+  transition: var(--ui-transition, all 150ms cubic-bezier(0.4, 0, 0.2, 1));
+  box-shadow: var(--ui-shadow-sm, 0 1px 2px 0 rgba(0, 0, 0, 0.05));
 
   /* Disable default button styles */
   background: none;
@@ -89,12 +41,12 @@
 }
 
 .repo-button:focus-visible {
-  outline: 2px solid #3b82f6;
+  outline: 2px solid var(--ui-color-focus, #3b82f6);
   outline-offset: 2px;
 }
 
 .repo-button:disabled {
-  opacity: 0.6;
+  opacity: var(--ui-opacity-disabled, 0.6);
   cursor: not-allowed;
   pointer-events: none;
 }
@@ -103,84 +55,95 @@
 
 /* Primary Button */
 .repo-button--primary {
-  background: var(--btn-primary-bg);
-  color: var(--btn-primary-text);
-  border-color: var(--btn-primary-border);
-  font-weight: 600;
+  background: var(--ui-color-primary, #3b82f6);
+  color: var(--ui-color-primary-foreground, #ffffff);
+  border-color: var(--ui-color-primary, #3b82f6);
+  font-weight: var(--ui-font-weight-semibold, 600);
 }
 
 .repo-button--primary:hover:not(:disabled) {
-  background: var(--btn-primary-bg-hover);
-  border-color: var(--btn-primary-border-hover);
-  box-shadow: var(--btn-shadow-hover);
-  transform: translateY(-1px);
+  background: var(--ui-color-primary-hover, #2563eb);
+  border-color: var(--ui-color-primary-hover, #2563eb);
+  box-shadow: var(
+    --ui-shadow-md,
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -2px rgba(0, 0, 0, 0.1)
+  );
+  transform: var(--ui-transform-hover, translateY(-1px));
 }
 
 .repo-button--primary:active:not(:disabled) {
-  background: var(--btn-primary-bg-active);
-  box-shadow: var(--btn-shadow-active);
-  transform: translateY(0);
+  background: var(--ui-color-primary-active, #1d4ed8);
+  box-shadow: var(--ui-shadow-sm, 0 1px 2px 0 rgba(0, 0, 0, 0.05));
+  transform: var(--ui-transform-active, translateY(0));
 }
 
 /* Secondary Button */
 .repo-button--secondary {
-  background: var(--btn-secondary-bg);
-  color: var(--btn-secondary-text);
-  border-color: var(--btn-secondary-border);
-  backdrop-filter: blur(12px);
+  background: var(--ui-color-secondary, #f1f5f9);
+  color: var(--ui-color-secondary-foreground, #0f172a);
+  border-color: var(--ui-color-border, #e2e8f0);
 }
 
 .repo-button--secondary:hover:not(:disabled) {
-  background: var(--btn-secondary-bg-hover);
-  border-color: var(--btn-secondary-border-hover);
-  box-shadow: var(--btn-shadow-hover);
-  transform: translateY(-1px);
+  background: var(--ui-color-secondary-hover, #e2e8f0);
+  border-color: var(--ui-color-border-hover, #cbd5e1);
+  box-shadow: var(
+    --ui-shadow-md,
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -2px rgba(0, 0, 0, 0.1)
+  );
+  transform: var(--ui-transform-hover, translateY(-1px));
 }
 
 .repo-button--secondary:active:not(:disabled) {
-  background: var(--btn-secondary-bg-active);
-  box-shadow: var(--btn-shadow-active);
-  transform: translateY(0);
+  background: var(--ui-color-secondary-active, #cbd5e1);
+  box-shadow: var(--ui-shadow-sm, 0 1px 2px 0 rgba(0, 0, 0, 0.05));
+  transform: var(--ui-transform-active, translateY(0));
 }
 
 /* Danger Button */
 .repo-button--danger {
-  background: var(--btn-danger-bg);
-  color: var(--btn-danger-text);
-  border-color: var(--btn-danger-border);
+  background: var(--ui-color-danger, #dc2626);
+  color: var(--ui-color-danger-foreground, #ffffff);
+  border-color: var(--ui-color-danger, #dc2626);
 }
 
 .repo-button--danger:hover:not(:disabled) {
-  background: var(--btn-danger-bg-hover);
-  border-color: var(--btn-danger-border-hover);
-  box-shadow: var(--btn-shadow-hover);
-  transform: translateY(-1px);
+  background: var(--ui-color-danger-hover, #b91c1c);
+  border-color: var(--ui-color-danger-hover, #b91c1c);
+  box-shadow: var(
+    --ui-shadow-md,
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -2px rgba(0, 0, 0, 0.1)
+  );
+  transform: var(--ui-transform-hover, translateY(-1px));
 }
 
 .repo-button--danger:active:not(:disabled) {
-  background: var(--btn-danger-bg-active);
-  box-shadow: var(--btn-shadow-active);
-  transform: translateY(0);
+  background: var(--ui-color-danger-active, #991b1b);
+  box-shadow: var(--ui-shadow-sm, 0 1px 2px 0 rgba(0, 0, 0, 0.05));
+  transform: var(--ui-transform-active, translateY(0));
 }
 
 /* Ghost Button */
 .repo-button--ghost {
-  background: var(--btn-ghost-bg);
-  color: var(--btn-ghost-text);
-  border-color: var(--btn-ghost-border);
+  background: var(--ui-color-ghost, transparent);
+  color: var(--ui-color-ghost-foreground, #64748b);
+  border-color: var(--ui-color-ghost-border, transparent);
   box-shadow: none;
 }
 
 .repo-button--ghost:hover:not(:disabled) {
-  background: var(--btn-ghost-bg-hover);
-  color: var(--btn-ghost-text-hover);
-  border-color: var(--btn-ghost-border-hover);
+  background: var(--ui-color-ghost-hover, rgba(0, 0, 0, 0.05));
+  color: var(--ui-color-ghost-foreground-hover, #475569);
+  border-color: var(--ui-color-ghost-border-hover, transparent);
   box-shadow: none;
   transform: none;
 }
 
 .repo-button--ghost:active:not(:disabled) {
-  background: var(--btn-ghost-bg-active);
+  background: var(--ui-color-ghost-active, rgba(0, 0, 0, 0.1));
   transform: none;
 }
 
@@ -188,29 +151,23 @@
 
 /* Small Button */
 .repo-button--small {
-  --btn-font-size: 0.75rem;
-  --btn-line-height: 1rem;
-  --btn-padding-x: 1rem;
-  --btn-padding-y: 0.5rem;
-  --btn-border-radius: 0.375rem;
-
-  padding: var(--btn-padding-y) var(--btn-padding-x);
+  font-size: var(--ui-font-size-xs, 0.75rem);
+  line-height: var(--ui-line-height-tight, 1.25);
+  padding: var(--ui-spacing-2, 0.5rem) var(--ui-spacing-3, 0.75rem);
+  border-radius: var(--ui-border-radius-sm, 0.25rem);
 }
 
 /* Medium Button (Default) */
 .repo-button--medium {
-  padding: var(--btn-padding-y) var(--btn-padding-x);
+  padding: var(--ui-spacing-3, 0.75rem) var(--ui-spacing-4, 1rem);
 }
 
 /* Large Button */
 .repo-button--large {
-  --btn-font-size: 1rem;
-  --btn-line-height: 1.5rem;
-  --btn-padding-x: 2rem;
-  --btn-padding-y: 0.875rem;
-  --btn-border-radius: 0.75rem;
-
-  padding: var(--btn-padding-y) var(--btn-padding-x);
+  font-size: var(--ui-font-size-base, 1rem);
+  line-height: var(--ui-line-height-normal, 1.5);
+  padding: var(--ui-spacing-4, 1rem) var(--ui-spacing-6, 1.5rem);
+  border-radius: var(--ui-border-radius-lg, 0.5rem);
 }
 
 /* Button States */
@@ -238,7 +195,7 @@
 .repo-button__content {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: var(--ui-spacing-2, 0.5rem);
 }
 
 /* Full Width Button */
@@ -249,24 +206,27 @@
 
 /* Icon Button */
 .repo-button--icon-only {
-  padding: var(--btn-padding-y);
   aspect-ratio: 1;
 }
 
 .repo-button--icon-only.repo-button--small {
-  padding: 0.5rem;
+  padding: var(--ui-spacing-2, 0.5rem);
+}
+
+.repo-button--icon-only.repo-button--medium {
+  padding: var(--ui-spacing-3, 0.75rem);
 }
 
 .repo-button--icon-only.repo-button--large {
-  padding: 0.875rem;
+  padding: var(--ui-spacing-4, 1rem);
 }
 
 /* Button Group Support */
 .repo-button-group {
   display: inline-flex;
-  border-radius: var(--btn-border-radius);
+  border-radius: var(--ui-border-radius, 0.375rem);
   overflow: hidden;
-  box-shadow: var(--btn-shadow);
+  box-shadow: var(--ui-shadow-sm, 0 1px 2px 0 rgba(0, 0, 0, 0.05));
 }
 
 .repo-button-group .repo-button {
@@ -276,19 +236,19 @@
 }
 
 .repo-button-group .repo-button:first-child {
-  border-top-left-radius: var(--btn-border-radius);
-  border-bottom-left-radius: var(--btn-border-radius);
+  border-top-left-radius: var(--ui-border-radius, 0.375rem);
+  border-bottom-left-radius: var(--ui-border-radius, 0.375rem);
 }
 
 .repo-button-group .repo-button:last-child {
-  border-top-right-radius: var(--btn-border-radius);
-  border-bottom-right-radius: var(--btn-border-radius);
-  border-right-width: var(--btn-border-width);
+  border-top-right-radius: var(--ui-border-radius, 0.375rem);
+  border-bottom-right-radius: var(--ui-border-radius, 0.375rem);
+  border-right-width: var(--ui-border-width, 1px);
 }
 
 .repo-button-group .repo-button:only-child {
-  border-radius: var(--btn-border-radius);
-  border-right-width: var(--btn-border-width);
+  border-radius: var(--ui-border-radius, 0.375rem);
+  border-right-width: var(--ui-border-width, 1px);
 }
 
 /* Animations */
@@ -300,19 +260,12 @@
 
 /* Responsive Adjustments */
 @media (max-width: 640px) {
-  .repo-button {
-    --btn-padding-x: 1.25rem;
-    --btn-padding-y: 0.75rem;
-  }
-
-  .repo-button--small {
-    --btn-padding-x: 0.875rem;
-    --btn-padding-y: 0.5rem;
+  .repo-button--medium {
+    padding: var(--ui-spacing-3, 0.75rem) var(--ui-spacing-3, 0.75rem);
   }
 
   .repo-button--large {
-    --btn-padding-x: 1.75rem;
-    --btn-padding-y: 0.875rem;
+    padding: var(--ui-spacing-4, 1rem) var(--ui-spacing-4, 1rem);
   }
 }
 
@@ -320,14 +273,6 @@
 @media (prefers-contrast: high) {
   .repo-button {
     border-width: 2px;
-  }
-
-  .repo-button--primary {
-    background: var(--btn-primary-bg);
-  }
-
-  .repo-button--danger {
-    background: var(--btn-danger-bg);
   }
 
   .repo-button--ghost {
@@ -347,15 +292,5 @@
 
   .repo-button__spinner {
     animation: none;
-  }
-}
-
-/* Dark Mode Adjustments */
-@media (prefers-color-scheme: dark) {
-  .repo-button {
-    --btn-secondary-bg: rgba(26, 26, 36, 0.8);
-    --btn-secondary-bg-hover: rgba(42, 42, 58, 0.9);
-    --btn-secondary-border: #404060;
-    --btn-secondary-border-hover: #505070;
   }
 }

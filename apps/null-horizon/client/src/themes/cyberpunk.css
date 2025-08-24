@@ -1,0 +1,357 @@
+/* Cyberpunk Theme for Null Horizon */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Exo+2:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Typography */
+  --ui-font-family: 'Exo 2', 'Orbitron', monospace, system-ui;
+  --ui-font-family-heading: 'Orbitron', monospace, system-ui;
+  --ui-font-weight-normal: 400;
+  --ui-font-weight-medium: 500;
+  --ui-font-weight-semibold: 600;
+  --ui-font-weight-bold: 700;
+  --ui-font-weight-extrabold: 800;
+
+  --ui-font-size-xs: 0.75rem;
+  --ui-font-size-sm: 0.875rem;
+  --ui-font-size-base: 1rem;
+  --ui-font-size-lg: 1.125rem;
+  --ui-font-size-xl: 1.25rem;
+  --ui-font-size-2xl: 1.5rem;
+  --ui-font-size-3xl: 1.875rem;
+
+  --ui-line-height-tight: 1.25;
+  --ui-line-height-normal: 1.5;
+  --ui-line-height-relaxed: 1.75;
+
+  --ui-letter-spacing: 0.05em;
+
+  /* Spacing */
+  --ui-spacing-1: 0.25rem;
+  --ui-spacing-2: 0.5rem;
+  --ui-spacing-3: 0.75rem;
+  --ui-spacing-4: 1rem;
+  --ui-spacing-5: 1.25rem;
+  --ui-spacing-6: 1.5rem;
+  --ui-spacing-8: 2rem;
+  --ui-spacing-12: 3rem;
+  --ui-spacing-16: 4rem;
+
+  /* Border Radius */
+  --ui-border-radius-sm: 0.125rem;
+  --ui-border-radius: 0.25rem;
+  --ui-border-radius-lg: 0.5rem;
+  --ui-border-radius-xl: 0.75rem;
+  --ui-border-radius-2xl: 1rem;
+  --ui-border-width: 1px;
+
+  /* Colors - Cyberpunk Neon Palette */
+  --ui-color-primary: #00ffff;
+  --ui-color-primary-hover: #00e6e6;
+  --ui-color-primary-active: #00cccc;
+  --ui-color-primary-foreground: #000014;
+
+  --ui-color-secondary: rgba(26, 26, 36, 0.9);
+  --ui-color-secondary-hover: rgba(42, 42, 58, 0.95);
+  --ui-color-secondary-active: rgba(64, 64, 96, 1);
+  --ui-color-secondary-foreground: #00ffff;
+
+  --ui-color-danger: #ff0099;
+  --ui-color-danger-hover: #e6008a;
+  --ui-color-danger-active: #cc0077;
+  --ui-color-danger-foreground: #ffffff;
+
+  --ui-color-ghost: transparent;
+  --ui-color-ghost-hover: rgba(0, 255, 255, 0.1);
+  --ui-color-ghost-active: rgba(0, 255, 255, 0.2);
+  --ui-color-ghost-foreground: #00ffff;
+  --ui-color-ghost-foreground-hover: #00e6e6;
+  --ui-color-ghost-border: rgba(0, 255, 255, 0.3);
+  --ui-color-ghost-border-hover: rgba(0, 255, 255, 0.5);
+
+  --ui-color-focus: #ff0099;
+  --ui-color-border: #404060;
+  --ui-color-border-hover: #505070;
+
+  /* Backgrounds */
+  --ui-color-background: #0a0a0f;
+  --ui-color-surface: #1a1a24;
+  --ui-color-surface-hover: #24243a;
+
+  /* Text Colors */
+  --ui-color-text-primary: #ffffff;
+  --ui-color-text-secondary: #a0a0b8;
+  --ui-color-text-muted: #666680;
+  --ui-color-text-accent: #00ffff;
+
+  /* Shadows - Neon Glows */
+  --ui-shadow-sm: 0 0 4px rgba(0, 255, 255, 0.3), 0 1px 2px rgba(0, 0, 0, 0.5);
+  --ui-shadow-md:
+    0 0 8px rgba(0, 255, 255, 0.4),
+    0 4px 6px -1px rgba(0, 0, 0, 0.3),
+    0 2px 4px -2px rgba(0, 0, 0, 0.3);
+  --ui-shadow-lg:
+    0 0 12px rgba(0, 255, 255, 0.5),
+    0 10px 15px -3px rgba(0, 0, 0, 0.4),
+    0 4px 6px -4px rgba(0, 0, 0, 0.4);
+  --ui-shadow-neon:
+    0 0 5px rgba(0, 255, 255, 0.8),
+    0 0 10px rgba(0, 255, 255, 0.6),
+    0 0 20px rgba(0, 255, 255, 0.4),
+    0 0 40px rgba(0, 255, 255, 0.2);
+  --ui-shadow-neon-pink:
+    0 0 5px rgba(255, 0, 153, 0.8),
+    0 0 10px rgba(255, 0, 153, 0.6),
+    0 0 20px rgba(255, 0, 153, 0.4);
+
+  /* Transitions */
+  --ui-transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --ui-transition-fast: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Transforms */
+  --ui-transform-hover: translateY(-2px);
+  --ui-transform-active: translateY(0);
+
+  /* Opacity */
+  --ui-opacity-disabled: 0.4;
+}
+
+/* Global Cyberpunk Styles */
+body {
+  background: linear-gradient(135deg, #0a0a0f 0%, #1a1a24 100%);
+  color: var(--ui-color-text-primary);
+  font-family: var(--ui-font-family);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Animated Background Grid */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: grid-move 20s linear infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes grid-move {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(50px, 50px); }
+}
+
+/* Cyberpunk Button Enhancements */
+.repo-button--primary {
+  background: linear-gradient(135deg, var(--ui-color-primary), #00b3b3);
+  border: 2px solid var(--ui-color-primary);
+  text-transform: uppercase;
+  font-weight: var(--ui-font-weight-bold);
+  font-family: var(--ui-font-family-heading);
+  position: relative;
+  overflow: hidden;
+}
+
+.repo-button--primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 500ms;
+}
+
+.repo-button--primary:hover::before {
+  left: 100%;
+}
+
+.repo-button--primary:hover {
+  box-shadow: var(--ui-shadow-neon);
+  transform: var(--ui-transform-hover);
+}
+
+.repo-button--secondary {
+  background: var(--ui-color-secondary);
+  border: 1px solid var(--ui-color-border);
+  backdrop-filter: blur(12px);
+  position: relative;
+}
+
+.repo-button--secondary:hover {
+  box-shadow:
+    0 0 8px rgba(0, 255, 255, 0.2),
+    0 4px 6px -1px rgba(0, 0, 0, 0.3);
+}
+
+.repo-button--danger {
+  background: linear-gradient(135deg, var(--ui-color-danger), #cc0066);
+  border: 2px solid var(--ui-color-danger);
+  text-transform: uppercase;
+  font-weight: var(--ui-font-weight-bold);
+}
+
+.repo-button--danger:hover {
+  box-shadow: var(--ui-shadow-neon-pink);
+}
+
+.repo-button--ghost {
+  border: 1px solid var(--ui-color-ghost-border);
+  text-transform: uppercase;
+  font-weight: var(--ui-font-weight-semibold);
+}
+
+.repo-button--ghost:hover {
+  border-color: var(--ui-color-ghost-border-hover);
+  text-shadow: 0 0 8px currentColor;
+}
+
+/* Form Elements */
+input, textarea, select {
+  background: rgba(26, 26, 36, 0.8);
+  border: 1px solid var(--ui-color-border);
+  color: var(--ui-color-text-primary);
+  font-family: var(--ui-font-family);
+  backdrop-filter: blur(8px);
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--ui-color-primary);
+  box-shadow: 0 0 0 2px rgba(0, 255, 255, 0.2);
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--ui-font-family-heading);
+  font-weight: var(--ui-font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--ui-letter-spacing);
+  color: var(--ui-color-text-primary);
+}
+
+h1 {
+  font-size: var(--ui-font-size-3xl);
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+  background: linear-gradient(135deg, #00ffff, #00cccc);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Loading Spinner Override */
+.repo-button__spinner {
+  border-top-color: var(--ui-color-primary);
+  filter: drop-shadow(0 0 4px var(--ui-color-primary));
+}
+
+/* Glitch Effect for Accent Text */
+.cyberpunk-glitch {
+  position: relative;
+  color: var(--ui-color-text-accent);
+  font-weight: var(--ui-font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  animation: glitch 2s infinite;
+}
+
+.cyberpunk-glitch::before,
+.cyberpunk-glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.cyberpunk-glitch::before {
+  animation: glitch-1 0.5s infinite;
+  color: #ff0099;
+  z-index: -1;
+}
+
+.cyberpunk-glitch::after {
+  animation: glitch-2 0.5s infinite;
+  color: #00ffff;
+  z-index: -2;
+}
+
+@keyframes glitch {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+}
+
+@keyframes glitch-1 {
+  0%, 100% { transform: translate(0); }
+  10% { transform: translate(-2px, -2px); }
+  20% { transform: translate(2px, 2px); }
+  30% { transform: translate(-2px, 2px); }
+  40% { transform: translate(2px, -2px); }
+  50% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  70% { transform: translate(-2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  90% { transform: translate(-2px, -2px); }
+}
+
+@keyframes glitch-2 {
+  0%, 100% { transform: translate(0); }
+  10% { transform: translate(2px, 2px); }
+  20% { transform: translate(-2px, -2px); }
+  30% { transform: translate(2px, -2px); }
+  40% { transform: translate(-2px, 2px); }
+  50% { transform: translate(2px, 2px); }
+  60% { transform: translate(-2px, -2px); }
+  70% { transform: translate(2px, -2px); }
+  80% { transform: translate(-2px, 2px); }
+  90% { transform: translate(2px, 2px); }
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--ui-color-background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--ui-color-primary), var(--ui-color-danger));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--ui-color-primary-hover), var(--ui-color-danger-hover));
+}
+
+/* Selection */
+::selection {
+  background: rgba(0, 255, 255, 0.3);
+  color: var(--ui-color-text-primary);
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  body::before {
+    animation: none;
+  }
+}
