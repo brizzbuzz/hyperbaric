@@ -1,0 +1,134 @@
+---
+title: "Hello World - My First MDX Post"
+date: "2024-01-15"
+author: "Portfolio Author"
+description: "Welcome to my blog! This is my first post using MDX, demonstrating how to combine Markdown with React components for rich, interactive content."
+tags: ["mdx", "react", "vite", "blogging"]
+---
+
+import { useState } from 'react'
+
+export const InteractiveCounter = () => {
+  const [count, setCount] = useState(0)
+  return (
+    <div style={{
+      padding: '1rem',
+      border: '2px solid var(--ui-color-primary, #3b82f6)',
+      borderRadius: '0.5rem',
+      margin: '1rem 0',
+      textAlign: 'center',
+      backgroundColor: 'var(--ui-color-background-secondary, #f8f9fa)'
+    }}>
+      <h4>Interactive Counter Component</h4>
+      <p>Current count: <strong>{count}</strong></p>
+      <button
+        onClick={() => setCount(count + 1)}
+        style={{
+          padding: '0.5rem 1rem',
+          backgroundColor: 'var(--ui-color-primary, #3b82f6)',
+          color: 'white',
+          border: 'none',
+          borderRadius: '0.25rem',
+          cursor: 'pointer',
+          marginRight: '0.5rem'
+        }}
+      >
+        Increment
+      </button>
+      <button
+        onClick={() => setCount(0)}
+        style={{
+          padding: '0.5rem 1rem',
+          backgroundColor: 'var(--ui-color-text-secondary, #4a4a4a)',
+          color: 'white',
+          border: 'none',
+          borderRadius: '0.25rem',
+          cursor: 'pointer'
+        }}
+      >
+        Reset
+      </button>
+    </div>
+  )
+}
+
+# Hello World - My First MDX Post
+
+Welcome to my portfolio blog! This is my first post using MDX, and I'm excited to show you how powerful this technology is for creating rich, interactive content.
+
+## What is MDX?
+
+MDX is a format that lets you seamlessly write JSX in your Markdown documents. You can import components, such as interactive charts or alerts, and embed them within your content. This makes writing long-form content with components a blast! 🚀
+
+## Why I Chose This Stack
+
+For this portfolio, I chose a modern stack that prioritizes developer experience and performance:
+
+- **React 18** - The latest version with concurrent features
+- **Vite** - Lightning-fast development server and build tool
+- **MDX** - For writing content with embedded React components
+- **TypeScript** - Type safety throughout the application
+
+## Interactive Components in Action
+
+One of the coolest features of MDX is the ability to embed interactive React components directly in your content. Here's a simple counter component:
+
+<InteractiveCounter />
+
+Pretty cool, right? This component is defined right in this MDX file and rendered inline with the content.
+
+## Code Highlighting
+
+MDX also supports excellent code highlighting out of the box. Here's some TypeScript code:
+
+```typescript
+interface BlogPost {
+  title: string;
+  date: string;
+  author: string;
+  content: string;
+}
+
+const createPost = (data: BlogPost): BlogPost => {
+  return {
+    ...data,
+    date: new Date().toISOString()
+  };
+};
+```
+
+And here's some React JSX:
+
+```jsx
+function WelcomeMessage({ name }) {
+  return (
+    <div className="welcome">
+      <h1>Hello, {name}!</h1>
+      <p>Welcome to my blog built with MDX.</p>
+    </div>
+  );
+}
+```
+
+## The Power of Frontmatter
+
+The metadata at the top of this file is called frontmatter. It allows me to define properties like the title, date, author, and description that can be used by the blog system to organize and display posts.
+
+## What's Next?
+
+I'm planning to write more posts about:
+
+1. **Advanced MDX Techniques** - Custom components, plugins, and more
+2. **Vite Deep Dive** - Optimization techniques and advanced configuration
+3. **React Performance** - Best practices for building fast React apps
+4. **TypeScript Tips** - Advanced patterns and utility types
+
+## Conclusion
+
+This combination of React, Vite, and MDX creates an incredibly powerful platform for technical writing. The ability to embed interactive components directly in content opens up so many possibilities for creating engaging, educational posts.
+
+Thanks for reading my first MDX post! Feel free to explore the interactive elements and check back for more content soon.
+
+---
+
+*This post was written in MDX and rendered using Vite's lightning-fast build system. The source code for this entire portfolio is available as part of my monorepo.*

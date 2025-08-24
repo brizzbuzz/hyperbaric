@@ -1,0 +1,30 @@
+/* App-specific styles */
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
+}
+
+/* Loading states */
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  color: var(--ui-color-text-secondary, #4a4a4a);
+}
+
+/* Error states */
+.error {
+  padding: var(--ui-spacing-4, 1rem);
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 0.5rem;
+  color: #dc2626;
+  margin: var(--ui-spacing-4, 1rem) 0;
+}
