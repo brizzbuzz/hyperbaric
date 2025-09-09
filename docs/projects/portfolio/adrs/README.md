@@ -1,0 +1,46 @@
+# Portfolio - Architecture Decision Records
+
+This directory contains Architecture Decision Records (ADRs) for the Portfolio personal website project.
+
+## About ADRs
+
+ADRs document significant architectural decisions made for this project, including the context, alternatives considered, and consequences of each decision.
+
+For the ADR template and guidelines, see the [general ADR documentation](../../../general/adr-template.md).
+
+## ADR Index
+
+### Active ADRs
+
+Currently no ADRs have been created for this project. As architectural decisions are made, they will be documented here.
+
+### Planned ADRs
+
+Potential future ADRs for Portfolio may include:
+
+- **PF-001**: Static site generation vs. dynamic rendering
+- **PF-002**: Content management system selection
+- **PF-003**: Image optimization and delivery strategy
+- **PF-004**: SEO and performance optimization approach
+- **PF-005**: Contact form and analytics integration
+
+## Contributing
+
+When creating new ADRs for Portfolio:
+
+1. Use the naming convention: `PF-XXX-brief-description.md`
+2. Follow the [ADR template](../../../general/adr-template.md)
+3. Update this index file with the new ADR
+4. Ensure ADRs are reviewed by the team before acceptance
+
+## ADR Status Definitions
+
+- **Proposed**: Under consideration
+- **Accepted**: Approved and being implemented
+- **Rejected**: Considered but not adopted
+- **Deprecated**: No longer applicable
+- **Superseded**: Replaced by a newer ADR
+
+---
+
+For questions about ADRs or to propose new architectural decisions, please refer to the [main documentation](../../../README.md) or create an issue for discussion.
