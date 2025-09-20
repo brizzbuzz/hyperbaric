@@ -1,33 +1,43 @@
-# `Turborepo` Vite starter
+# Hyperbaric
 
-This is a community-maintained example. If you experience a problem, please submit a pull request with a fix. GitHub Issues will be closed.
+A modern monorepo containing multiple web applications built with React, TypeScript, and shared tooling.
 
-## Using this example
+## Projects
 
-Run the following command:
+- **Null Horizon** - Financial analysis and portfolio tracking tool
+- **Chronicler** - AI-native RSS feed reader  
+- **Portfolio** - Personal portfolio showcase
 
-```sh
-npx create-turbo@latest -e with-vite
+## Quick Start
+
+```bash
+# Install dependencies
+bun install
+
+# Start all projects
+bun run dev
+
+# Or start specific project
+turbo run dev --filter=null-horizon-client
 ```
 
-## What's inside?
+## Documentation
 
-This Turborepo includes the following packages and apps:
+Complete documentation is available in the [`docs/`](./docs/) directory, including:
 
-### Apps and Packages
+- [Getting Started](./docs/general/getting-started.md)
+- [Architecture Overview](./docs/general/architecture.md)
+- [Database Management](./docs/general/database-management.md)
+- [Project-Specific Guides](./docs/projects/)
 
-- `docs`: a vanilla [vite](https://vitejs.dev) ts app
-- `web`: another vanilla [vite](https://vitejs.dev) ts app
-- `@repo/ui`: a stub component & utility library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: shared `eslint` configurations
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+## Tech Stack
 
-Each package and app is 100% [TypeScript](https://www.typescriptlang.org/).
+- **Frontend**: React, TypeScript, Vite
+- **Backend**: Node.js/Bun, Hono
+- **Database**: PostgreSQL with Atlas migrations
+- **Auth**: Better Auth
+- **Tooling**: Turborepo, shared configs
 
-### Utilities
+---
 
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+For detailed setup and development information, see the [documentation](./docs/).

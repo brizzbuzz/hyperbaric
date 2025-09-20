@@ -10,7 +10,7 @@ Null Horizon provides users with tools to analyze financial data, track investme
 
 - **Client**: React application built with Vite
 - **Server**: Node.js/Bun backend API
-- **Database**: To be determined based on requirements
+- **Database**: PostgreSQL with Atlas schema management
 - **Authentication**: Better Auth integration
 
 ## Getting Started
@@ -45,7 +45,27 @@ apps/null-horizon/
 
 - **Frontend**: React, TypeScript, Vite, @repo/ui
 - **Backend**: Node.js/Bun, TypeScript, Better Auth
+- **Database**: PostgreSQL, Atlas migrations, Kysely query builder
 - **Development**: Turborepo, shared TypeScript config
+
+## Database
+
+Uses PostgreSQL with declarative schema management via Atlas:
+
+```bash
+# Push schema to registry
+atlas schema push --env dev
+
+# Apply schema changes
+atlas schema apply --env dev
+```
+
+**Schema Structure:**
+- `auth` - Better Auth tables (users, sessions, accounts)
+- `asset` - Financial asset definitions and metadata
+- `public` - General application tables
+
+For detailed database management, see [Database Management](../../general/database-management.md).
 
 ## Documentation
 
