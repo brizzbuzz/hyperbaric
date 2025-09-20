@@ -9,13 +9,18 @@
     "start": "PORT=3001 bun run src/index.ts",
     "type-check": "tsc --noEmit",
     "lint": "oxlint --type-aware",
-    "lint:fix": "oxlint --type-aware --fix"
+    "lint:fix": "oxlint --type-aware --fix",
+    "migrate:diff": "atlas migrate diff --env dev",
+    "migrate:apply": "atlas migrate apply --env dev",
+    "migrate:status": "atlas migrate status --env dev",
+    "schema:inspect": "atlas schema inspect --env dev"
   },
   "dependencies": {
     "@types/pg": "^8.15.5",
-    "better-auth": "^1.3.7",
+    "better-auth": "^1.3.13",
     "dotenv": "^17.2.1",
     "hono": "^4.9.1",
+    "kysely": "^0.28.7",
     "pg": "^8.16.3"
   },
   "devDependencies": {

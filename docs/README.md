@@ -7,6 +7,7 @@ Welcome to the comprehensive documentation for the Hyperbaric monorepo. This doc
 ### General Documentation
 - [Getting Started](./general/getting-started.md) - Setup and development workflow
 - [Architecture Overview](./general/architecture.md) - Monorepo structure and design principles
+- [Database Management](./general/database-management.md) - Atlas migrations and schema management
 - [Authentication](./general/authentication.md) - How we handle auth across projects
 - [UI Components & Design System](./general/ui-components.md) - Shared UI package usage
 - [Package Management](./general/packages.md) - How we structure and use shared packages
