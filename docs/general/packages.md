@@ -61,7 +61,7 @@ Shared TypeScript configurations for consistent type checking.
 
 2. **Initialize Package**
    ```bash
-   bun init
+   pnpm init
    # Edit package.json with proper name and dependencies
    ```
 
@@ -120,26 +120,24 @@ Shared TypeScript configurations for consistent type checking.
 
 #### To a Package
 ```bash
-cd packages/ui
-bun add some-dependency
+pnpm --filter @repo/ui add some-dependency
 
 # Or for dev dependencies
-bun add -d some-dev-dependency
+pnpm --filter @repo/ui add -D some-dev-dependency
 ```
 
 #### To an Application
 ```bash
-cd apps/chronicler/client
-bun add some-dependency
+pnpm --filter chronicler-client add some-dependency
 
 # To use a workspace package
-bun add @repo/ui
+pnpm --filter chronicler-client add @repo/ui
 ```
 
 #### To Root (Development Tools)
 ```bash
 # From root directory
-bun add -d some-dev-tool
+pnpm add -D -w some-dev-tool
 ```
 
 ### Dependency Guidelines
@@ -290,7 +288,7 @@ turbo run dev --filter=chronicler-client
 turbo run build --filter=@repo/package-name
 
 # Check workspace configuration
-bun install
+pnpm install
 ```
 
 #### Type Errors

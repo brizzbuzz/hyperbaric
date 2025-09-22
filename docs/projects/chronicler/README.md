@@ -9,7 +9,7 @@ Chronicler helps users consume RSS feeds more efficiently by leveraging AI for c
 ## Architecture
 
 - **Client**: React application built with Vite
-- **Server**: Node.js/Bun backend API
+- **Server**: Node.js backend API
 - **Database**: To be determined based on requirements
 - **Authentication**: Better Auth integration
 - **AI Integration**: External AI APIs for content processing
@@ -17,14 +17,15 @@ Chronicler helps users consume RSS feeds more efficiently by leveraging AI for c
 ## Getting Started
 
 ```bash
-# Navigate to project
-cd apps/chronicler
-
-# Install dependencies
-bun install
+# Install dependencies (from repo root)
+pnpm install
 
 # Start development
-bun run dev
+pnpm --filter chronicler-* run dev
+
+# Or start specific services
+pnpm --filter chronicler-server run dev
+pnpm --filter chronicler-client run dev
 ```
 
 ## Project Structure
@@ -46,7 +47,7 @@ apps/chronicler/
 ## Technology Stack
 
 - **Frontend**: React, TypeScript, Vite, @repo/ui
-- **Backend**: Node.js/Bun, TypeScript, Better Auth
+- **Backend**: Node.js, TypeScript, Better Auth
 - **AI**: External AI APIs for content processing
 - **Development**: Turborepo, shared TypeScript config
 

@@ -12,6 +12,7 @@ Welcome to the comprehensive documentation for the Hyperbaric monorepo. This doc
 - [UI Components & Design System](./general/ui-components.md) - Shared UI package usage
 - [Package Management](./general/packages.md) - How we structure and use shared packages
 - [Tooling & Development](./general/tooling.md) - Build tools, linting, and development workflow
+- [Testing Strategy](./general/testing-strategy.md) - Comprehensive testing approach and patterns
 - [Deployment](./general/deployment.md) - How we deploy and manage environments
 - [ADR Template](./general/adr-template.md) - Template for Architecture Decision Records
 
@@ -51,13 +52,13 @@ Welcome to the comprehensive documentation for the Hyperbaric monorepo. This doc
 
 2. **Install dependencies**
    ```bash
-   bun install
+   pnpm install
    ```
 
 3. **Start development**
    ```bash
    # Start all projects
-   bun run dev
+   pnpm run dev
    
    # Or start specific project
    turbo run dev --filter=chronicler-client

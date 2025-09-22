@@ -16,14 +16,11 @@ Portfolio provides a platform to showcase projects, skills, and professional bac
 ## Getting Started
 
 ```bash
-# Navigate to project
-cd apps/portfolio
-
-# Install dependencies
-bun install
+# Install dependencies (from repo root)
+pnpm install
 
 # Start development
-bun run dev
+pnpm --filter portfolio-client run dev
 ```
 
 ## Project Structure
