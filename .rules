@@ -1,0 +1,92 @@
+# Hyperbaric Monorepo Rules for AI Agents
+
+## Package Management
+- Use `pnpm` exclusively, never `npm` or `yarn`
+- Use workspace filtering: `pnpm --filter project-name command`
+- Reference catalog versions with `"catalog:"` in package.json
+- See: docs/general/getting-started.md#package-management-with-pnpm
+
+## Testing Strategy
+- Follow null-horizon server pattern for all new test suites
+- Use Vitest + Testcontainers for backend integration tests
+- Implement database isolation with clean state between tests
+- See: docs/general/testing-strategy.md
+
+## Code Quality
+- Run `pnpm run lint` before commits
+- Use OXLint for TypeScript-aware linting with auto-fixes
+- Follow shared TypeScript config from @repo/typescript-config
+- See: docs/general/tooling.md#code-quality-tools
+
+## Monorepo Structure
+- Apps in `/apps` for standalone applications
+- Shared code in `/packages` for cross-project utilities
+- Use Turborepo filtering for efficient task execution
+- See: docs/general/architecture.md#monorepo-structure
+
+## Development Workflow
+- Start all: `pnpm run dev`
+- Start specific: `turbo run dev --filter=project-name`
+- Build with cache: `turbo run build`
+- Force rebuild: `turbo run build --force`
+- See: docs/general/getting-started.md#development-workflow
+
+## Database Management
+- Use Atlas for schema management and migrations
+- Push schema changes: `atlas schema push --env dev`
+- Apply schema from registry: `atlas schema apply --env dev`
+- Inspect current schema: `atlas schema inspect --env dev`
+- Better Auth integration requires manual schema prefixing
+- See: docs/general/database-management.md
+
+## UI Components
+- Use @repo/ui package for shared components
+- Follow design system patterns and accessibility guidelines
+- Document new components in Storybook
+- See: docs/general/ui-components.md
+
+## Documentation Standards
+- Update relevant docs when making changes
+- Use ADR template for architectural decisions
+- Follow established markdown formatting
+- See: docs/general/adr-template.md
+
+## Project-Specific Patterns
+- Null Horizon: Financial analysis, PostgreSQL, full-stack
+- Chronicler: AI RSS reader, content processing
+- Portfolio: Static site, showcase format
+- See: docs/projects/*/README.md
+
+## Quick Reference Commands
+```bash
+# Setup
+pnpm install
+
+# Development
+pnpm run dev                              # All projects
+turbo run dev --filter=project-name      # Specific project
+
+# Quality
+pnpm run lint && pnpm run type-check     # Code quality
+pnpm run test                             # All tests
+pnpm --filter project run test           # Project tests
+
+# Build
+turbo run build                           # All projects
+turbo run build --filter=project-name    # Specific project
+
+# Database Schema Management
+atlas schema push --env dev              # Push schema to registry
+atlas schema apply --env dev --auto-approve # Apply schema from registry
+atlas schema apply --env dev --dry-run   # Preview schema changes (or use pnpm run schema:plan)
+atlas schema inspect --env dev           # Inspect current database
+atlas migrate diff --env dev --name desc # Generate migration
+atlas migrate apply --env dev            # Apply migrations
+```
+
+## When in Doubt
+1. Check project-specific docs in docs/projects/
+2. Review similar implementations in existing code
+3. Follow null-horizon server patterns for backend testing
+4. Use pnpm workspace commands consistently
+5. Document decisions with ADRs for significant changes

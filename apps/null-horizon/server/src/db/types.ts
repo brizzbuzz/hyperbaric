@@ -62,6 +62,43 @@ export interface AssetAssets {
   decimals: number;
 }
 
+// Financial Schema Tables
+export interface FinancialProviders {
+  id: Generated<string>; // UUID as string
+  name: string;
+  display_name: string;
+  oauth_config: Record<string, any>; // JSONB
+  is_active: boolean;
+  created_at: Generated<Timestamp>;
+  updated_at: Generated<Timestamp>;
+}
+
+export interface FinancialConnectedAccounts {
+  id: Generated<string>; // UUID as string
+  user_id: string;
+  provider_id: string; // UUID as string
+
+  // Encrypted OAuth data
+  encrypted_access_token: string;
+  encrypted_refresh_token: string | null;
+  token_expires_at: Timestamp | null;
+  refresh_token_expires_at: Timestamp | null;
+
+  // Account metadata
+  external_account_id: string;
+  account_name: string | null;
+  account_type: string | null;
+
+  // Status tracking
+  is_active: boolean;
+  last_sync_at: Timestamp | null;
+  sync_status: string;
+  sync_error: string | null;
+
+  created_at: Generated<Timestamp>;
+  updated_at: Generated<Timestamp>;
+}
+
 // Database Interface
 export interface Database {
   "auth.user": AuthUser;
@@ -69,4 +106,6 @@ export interface Database {
   "auth.account": AuthAccount;
   "auth.verification": AuthVerification;
   "asset.assets": AssetAssets;
+  "financial.providers": FinancialProviders;
+  "financial.connected_accounts": FinancialConnectedAccounts;
 }

@@ -9,7 +9,7 @@ env "dev" {
       name = "null-horizon"
     }
   }
-  schemas = ["auth", "asset", "public"]
+  schemas = ["auth", "asset", "financial", "public"]
 }
 
 env "prod" {
@@ -21,5 +21,5 @@ env "prod" {
       name = "null-horizon"
     }
   }
-  schemas = ["auth", "asset", "public"]
+  schemas = ["auth", "asset", "financial", "public"]
 }
