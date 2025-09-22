@@ -13,13 +13,13 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
-    "@repo/ui": "*",
+    "@repo/ui": "workspace:*",
     "better-auth": "^1.3.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@repo/typescript-config": "*",
+    "@repo/typescript-config": "workspace:*",
     "@types/react": "^18.2.43",
     "@types/react-dom": "^18.2.17",
     "@vitejs/plugin-react": "^4.2.1",

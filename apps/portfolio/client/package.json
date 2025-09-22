@@ -13,14 +13,14 @@
   },
   "dependencies": {
     "@mdx-js/react": "^3.0.1",
-    "@repo/ui": "*",
+    "@repo/ui": "workspace:*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.26.2"
   },
   "devDependencies": {
     "@mdx-js/rollup": "^3.0.1",
-    "@repo/typescript-config": "*",
+    "@repo/typescript-config": "workspace:*",
     "@types/react": "^18.2.43",
     "@types/react-dom": "^18.2.17",
     "@vitejs/plugin-react": "^4.2.1",
