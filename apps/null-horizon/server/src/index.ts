@@ -1,6 +1,7 @@
 import { Hono } from "hono";
 import { auth } from "./auth";
 import { cors } from "hono/cors";
+import { financial } from "./routes/financial.js";
 
 const app = new Hono<{
   Variables: {
@@ -40,5 +41,7 @@ app.use("*", async (c, next) => {
 app.on(["POST", "GET"], "/api/auth/*", (c) => {
   return auth.handler(c.req.raw);
 });
+
+app.route("/api/financial", financial);
 
 export default app;

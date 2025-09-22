@@ -7,6 +7,10 @@ import {
   VerificationRepository,
 } from "./auth.js";
 import { AssetRepository } from "./asset.js";
+import {
+  FinancialProviderRepository,
+  FinancialConnectedAccountRepository,
+} from "./financial.js";
 
 export class RepositoryFactory {
   private db: Kysely<Database>;
@@ -15,6 +19,8 @@ export class RepositoryFactory {
   private _accountRepository?: AccountRepository;
   private _verificationRepository?: VerificationRepository;
   private _assetRepository?: AssetRepository;
+  private _financialProviderRepository?: FinancialProviderRepository;
+  private _financialConnectedAccountRepository?: FinancialConnectedAccountRepository;
 
   constructor(db: Kysely<Database>) {
     this.db = db;
@@ -54,6 +60,23 @@ export class RepositoryFactory {
     }
     return this._assetRepository;
   }
+
+  get financialProviders(): FinancialProviderRepository {
+    if (!this._financialProviderRepository) {
+      this._financialProviderRepository = new FinancialProviderRepository(
+        this.db,
+      );
+    }
+    return this._financialProviderRepository;
+  }
+
+  get financialConnectedAccounts(): FinancialConnectedAccountRepository {
+    if (!this._financialConnectedAccountRepository) {
+      this._financialConnectedAccountRepository =
+        new FinancialConnectedAccountRepository(this.db);
+    }
+    return this._financialConnectedAccountRepository;
+  }
 }
 
 // Singleton instance
@@ -80,3 +103,4 @@ export function getRepositories(): RepositoryFactory {
 // Re-export types and repositories
 export * from "./auth.js";
 export * from "./asset.js";
+export * from "./financial.js";

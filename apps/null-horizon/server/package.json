@@ -15,7 +15,11 @@
     "migrate:diff": "atlas migrate diff --env dev",
     "migrate:apply": "atlas migrate apply --env dev",
     "migrate:status": "atlas migrate status --env dev",
-    "schema:inspect": "atlas schema inspect --env dev"
+    "schema:inspect": "atlas schema inspect --env dev",
+    "schema:push": "atlas schema push --env dev",
+    "schema:apply": "atlas schema apply --env dev --auto-approve",
+    "schema:plan": "atlas schema apply --env dev --dry-run",
+    "schema:diff": "atlas schema diff --env dev"
   },
   "dependencies": {
     "@types/pg": "^8.15.5",
