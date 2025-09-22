@@ -12,10 +12,10 @@ A modern monorepo containing multiple web applications built with React, TypeScr
 
 ```bash
 # Install dependencies
-bun install
+pnpm install
 
 # Start all projects
-bun run dev
+pnpm run dev
 
 # Or start specific project
 turbo run dev --filter=null-horizon-client
@@ -33,10 +33,10 @@ Complete documentation is available in the [`docs/`](./docs/) directory, includi
 ## Tech Stack
 
 - **Frontend**: React, TypeScript, Vite
-- **Backend**: Node.js/Bun, Hono
+- **Backend**: Node.js, Hono
 - **Database**: PostgreSQL with Atlas migrations
 - **Auth**: Better Auth
-- **Tooling**: Turborepo, shared configs
+- **Tooling**: Turborepo, shared configs, pnpm workspace
 
 ---
 

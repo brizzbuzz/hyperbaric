@@ -1,178 +1,165 @@
 # Tooling & Development
 
-This document covers the development tooling, build systems, and workflow automation used across the Hyperbaric monorepo.
+This document outlines the development tools, build processes, and workflows used across the Hyperbaric monorepo.
 
-## Overview
+## Core Development Tools
 
-The Hyperbaric monorepo uses modern development tools to ensure code quality, performance, and developer productivity across all projects.
+### Package Manager - pnpm
 
-## Core Tools
+**Version**: 9.0.0+
 
-### Package Manager - Bun
+pnpm serves as our primary package manager, providing:
+- Fast package installation with efficient disk usage
+- Workspace support for monorepo management
+- Catalog feature for centralized version management
+- Strict dependency resolution
+- Built-in security auditing
 
-**Version**: 1.2.20+
-
-Bun serves as our primary package manager and JavaScript runtime, providing:
-- Fast package installation and resolution
-- Built-in bundler and test runner
-- TypeScript support out of the box
-- Node.js compatibility
-
-**Usage**:
+#### Basic Commands
 ```bash
 # Install dependencies
-bun install
+pnpm install
 
 # Run scripts
-bun run dev
-bun run build
+pnpm run dev
+pnpm run build
 
 # Add dependencies
-bun add package-name
-bun add -d dev-package
+pnpm add package-name
+pnpm add -D dev-package
+
+# Workspace-specific commands
+pnpm --filter project-name add package-name
+pnpm --filter project-name run dev
 ```
 
-### Build System - Turborepo
+### Build Orchestration - Turborepo
 
-**Purpose**: Monorepo orchestration and build caching
+**Version**: Latest stable
 
-**Features**:
-- Intelligent build caching
-- Parallel task execution
-- Dependency-aware task scheduling
-- Remote caching capabilities
+Turborepo manages our monorepo build system with:
+- Intelligent task scheduling and parallelization
+- Incremental builds with remote caching
+- Task dependency graphs
+- Cross-project dependency resolution
 
-**Configuration**: `turbo.json`
+#### Configuration (`turbo.json`)
 ```json
 {
-  "tasks": {
-    "build": {
-      "dependsOn": ["^build", "type-check"],
-      "inputs": ["$TURBO_DEFAULT$", ".env*"],
-      "outputs": ["dist/**", "build/**"]
-    },
-    "type-check": {
-      "dependsOn": ["^type-check"],
-      "inputs": ["$TURBO_DEFAULT$", "tsconfig.json"],
-      "outputs": []
-    },
-    "lint": {
-      "dependsOn": ["^lint", "type-check"],
-      "cache": false,
-      "inputs": ["$TURBO_DEFAULT$", "oxlint.json", ".oxlintrc.json"]
-    },
+  "pipeline": {
     "dev": {
       "cache": false,
       "persistent": true
-    }
+    },
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**", "build/**"]
+    },
+    "test": {
+      "dependsOn": ["build"]
+    },
+    "lint": {},
+    "type-check": {}
   }
 }
 ```
 
-**Common Commands**:
+#### Common Turbo Commands
 ```bash
-# Run command across all packages
+# Run task across all workspaces
 turbo run build
 
-# Filter to specific packages
+# Filter by workspace
 turbo run dev --filter=chronicler-client
-turbo run build --filter=./packages/*
 
 # Force rebuild (ignore cache)
 turbo run build --force
-```
 
-## Code Quality Tools
+# Run with dependencies
+turbo run build --filter=...chronicler-client
+```
 
 ### Linting - OXLint
 
-**Purpose**: Fast TypeScript/JavaScript linting
+**Version**: Latest stable
 
-**Features**:
-- TypeScript-aware linting
-- High performance (written in Rust)
-- ESLint-compatible rules
-- Automatic fixes for many issues
+OXLint provides fast TypeScript/JavaScript linting with:
+- Type-aware linting rules
+- Performance optimizations
+- ESLint compatibility
+- Auto-fixing capabilities
 
-**Configuration**: `oxlint.json`
-```json
-{
-  "rules": {
-    "no-unused-vars": "error",
-    "@typescript-eslint/no-explicit-any": "warn"
-  }
-}
-```
-
-**Usage**:
+#### Commands
 ```bash
 # Lint all files
-bun run lint
+pnpm run lint
 
 # Fix auto-fixable issues
-bun run lint:fix
+pnpm run lint:fix
 
 # Basic linting without type checking
-bun run lint:basic
+pnpm run lint:basic
 
 # Type checking only
-bun run lint:type-check
+pnpm run lint:type-check
+```
+
+#### Configuration (`oxlint.json`)
+```json
+{
+  "extends": ["@oxlint/recommended"],
+  "rules": {
+    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/explicit-function-return-type": "warn"
+  },
+  "ignorePatterns": ["dist/**", "node_modules/**", ".turbo/**"]
+}
 ```
 
 ### Code Formatting - Prettier
 
-**Purpose**: Consistent code formatting
+**Version**: 3.2.5+
 
-**Configuration**: `.prettierrc`
-```json
-{
-  "semi": false,
-  "singleQuote": true,
-  "tabWidth": 2,
-  "trailingComma": "es5"
-}
-```
+Prettier handles code formatting with:
+- Consistent style across all files
+- Integration with editors
+- Pre-commit hooks
+- Support for TypeScript, JSON, Markdown
 
-**Usage**:
+#### Commands
 ```bash
 # Format all files
-bun run format
+pnpm run format
 
 # Check formatting without modifying
-npx prettier --check "**/*.{ts,tsx,md}"
+pnpm exec prettier --check "**/*.{ts,tsx,md}"
 ```
 
-## Development Servers
-
-### Vite
-
-**Used by**: All React applications
-
-**Features**:
-- Fast HMR (Hot Module Replacement)
-- Native ES modules
-- TypeScript support
-- Optimized production builds
-
-**Configuration**: `vite.config.ts`
-```typescript
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-
-export default defineConfig({
-  plugins: [react()],
-  server: {
-    port: 3000,
-    host: true
-  }
-})
+#### Configuration (`.prettierrc`)
+```json
+{
+  "semi": true,
+  "trailingComma": "es5",
+  "singleQuote": false,
+  "printWidth": 80,
+  "tabWidth": 2,
+  "useTabs": false
+}
 ```
 
 ## TypeScript Configuration
 
-### Shared Configuration
+### Shared Configuration Package
 
-**Base Config**: `packages/typescript-config/base.json`
+**Location**: `packages/typescript-config/`
+
+Provides consistent TypeScript settings across all projects:
+- Strict type checking
+- Modern ES features
+- React JSX support
+- Path mapping for monorepo imports
+
+#### Base Configuration
 ```json
 {
   "compilerOptions": {
@@ -187,9 +174,8 @@ export default defineConfig({
 }
 ```
 
-### Project-Specific Configs
-
-Applications extend the base configuration:
+### Project-Specific Overrides
+Each project extends the base configuration:
 ```json
 {
   "extends": "@repo/typescript-config/base.json",
@@ -202,65 +188,50 @@ Applications extend the base configuration:
 }
 ```
 
-## Environment Management
+## Runtime Requirements
 
 ### Development Environment
-
-**Requirements**:
-- Bun 1.2.20+
+- pnpm 9.0.0+
 - Node.js 18+ (for compatibility)
-- Git
+- TypeScript 5.5+
+- Git 2.30+
 
-**Setup**:
+#### Setup Verification
 ```bash
 # Check versions
-bun --version
+pnpm --version
 node --version
 
 # Install dependencies
-bun install
+pnpm install
 
 # Start development
-bun run dev
+pnpm run dev
 ```
 
-### Environment Variables
+## Application Development
 
-**Structure**:
-- `.env.example` - Template with required variables
-- `.env.local` - Local development overrides (gitignored)
-- `process.env` - Runtime environment variables
+### Frontend Development
 
-**Best Practices**:
-- Never commit secrets to version control
-- Use descriptive names with prefixes
-- Validate required environment variables at startup
-- Document all environment variables
+**Framework**: Vite + React
 
-## Build Process
+**Key Features**:
+- Hot Module Replacement (HMR)
+- TypeScript support
+- Asset optimization
+- Development server with proxy
 
-### Development Builds
+**Command**: `pnpm run dev`
 
-**Characteristics**:
-- Fast incremental compilation
-- Source maps for debugging
-- Hot module replacement
-- Unminified output
-
-**Command**: `bun run dev`
-
-### Production Builds
-
-**Characteristics**:
-- Optimized and minified
+**Build Output**:
+- Optimized JavaScript bundles
 - Tree-shaken bundles
 - Asset optimization
-- Type checking enforcement
+- Source maps for debugging
 
-**Command**: `bun run build`
+**Command**: `pnpm run build`
 
-### Build Outputs
-
+**Directory Structure**:
 ```
 dist/
 ├── assets/          # Static assets (images, fonts)
@@ -269,145 +240,113 @@ dist/
 └── index.html       # Entry point
 ```
 
-## Testing
+### Backend Development
 
-### Unit Testing
+**Framework**: Node.js + Hono
 
-**Framework**: Built-in Bun test runner
+**Test Framework**: Vitest with Testcontainers
 
-**Configuration**:
+**Key Features**:
+- TypeScript compilation
+- Hot reload in development
+- Database integration testing
+- Container-based test isolation
+
+#### Test Configuration
 ```typescript
-// bun.config.ts
-export default {
+// vitest.config.ts
+export default defineConfig({
   test: {
-    coverage: {
-      exclude: ['dist/**', 'node_modules/**']
-    }
+    globals: true,
+    environment: "node",
+    setupFiles: ["./test/setup.ts"],
+    testTimeout: 10000,
+    pool: "forks"
+  }
+});
+```
+
+#### Running Tests
+```bash
+# Run tests
+pnpm run test
+
+# Watch mode
+pnpm --filter project-name run test
+
+# Coverage report
+pnpm run test -- --coverage
+```
+
+## Monorepo Workspace Management
+
+### Workspace Structure
+```
+hyperbaric/
+├── apps/
+│   ├── chronicler/
+│   ├── null-horizon/
+│   └── portfolio/
+├── packages/
+│   ├── ui/
+│   └── typescript-config/
+└── package.json        # Workspace root
+```
+
+### Package Linking
+
+**Automatic**: pnpm handles workspace linking automatically
+**Manual**: Use `pnpm link` for local development
+
+### Dependency Management
+
+**Workspace Dependencies**:
+```json
+{
+  "dependencies": {
+    "@repo/ui": "workspace:*"
   }
 }
 ```
 
-**Usage**:
-```bash
-# Run tests
-bun test
+### Cross-Package Development
 
-# Watch mode
-bun test --watch
+1. **Make Changes**: Edit source in `packages/`
+2. **Build Package**: `turbo run build --filter=@repo/package-name`
+3. **Test Integration**: Changes are immediately available in consuming apps
 
-# Coverage report
-bun test --coverage
-```
+## Performance Optimization
 
-### Testing Patterns
+### Build Performance
 
-**Component Testing**:
-```typescript
-import { render, screen } from '@testing-library/react'
-import { Button } from '@repo/ui'
+**Turborepo Caching**:
+- Local task caching
+- Remote cache support (future)
+- Incremental builds based on file changes
 
-test('button renders correctly', () => {
-  render(<Button>Click me</Button>)
-  expect(screen.getByRole('button')).toBeInTheDocument()
-})
-```
-
-## Development Workflow
-
-### Git Workflow
-
-**Branch Strategy**:
-- `main` - Production-ready code
-- `feature/*` - Feature development
-- `fix/*` - Bug fixes
-- `docs/*` - Documentation updates
-
-**Commit Convention**:
-```
-type(scope): description
-
-feat(ui): add new button component
-fix(api): resolve authentication issue
-docs(readme): update installation instructions
-```
-
-### Pre-commit Hooks
-
-**Setup**: Using simple git hooks or husky
-
-**Checks**:
-- Linting and formatting
-- Type checking
-- Unit tests
-- Build verification
-
-### Code Review Process
-
-1. Create feature branch
-2. Implement changes with tests
-3. Run quality checks locally
-4. Create pull request
-5. Automated CI checks
-6. Peer review
-7. Merge to main
-
-## Performance Tools
+**Parallel Execution**:
+- Tasks run in parallel where possible
+- Dependency graph ensures correct order
+- Maximum CPU utilization
 
 ### Bundle Analysis
 
 **Vite Bundle Analyzer**:
 ```bash
 # Analyze bundle size
-bun run build --analyze
+pnpm run build -- --analyze
 ```
 
 **Bundle Size Monitoring**:
 - Track bundle size changes
 - Set size budgets per application
-- Monitor third-party dependency impact
-
-### Performance Monitoring
-
-**Development**:
-- React DevTools
-- Browser performance timeline
-- Network tab analysis
-
-**Production**:
-- Web Vitals monitoring
-- Error tracking
-- Performance metrics collection
-
-## Debugging Tools
-
-### Development Debugging
-
-**Browser DevTools**:
-- Source maps for original code
-- React component inspector
-- Network request monitoring
-- Performance profiling
-
-**VS Code Integration**:
-```json
-// .vscode/launch.json
-{
-  "configurations": [
-    {
-      "name": "Debug Chrome",
-      "type": "chrome",
-      "request": "launch",
-      "url": "http://localhost:3000"
-    }
-  ]
-}
-```
+- Alert on significant increases
 
 ## CI/CD Integration
 
-### GitHub Actions
+### GitHub Actions Workflow
 
-**Workflow Example**:
+**Example Configuration**:
 ```yaml
 name: CI
 on: [push, pull_request]
@@ -417,22 +356,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: oven-sh/setup-bun@v1
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 9
       
-      - run: bun install
-      - run: bun run lint
-      - run: bun run type-check
-      - run: bun run test
-      - run: bun run build
+      - run: pnpm install
+      - run: pnpm run lint
+      - run: pnpm run type-check
+      - run: pnpm run test
+      - run: pnpm run build
 ```
 
-### Quality Gates
-
-**Required Checks**:
-- All linting rules pass
-- No TypeScript errors
+**Quality Gates**:
+- All linting passes
+- Type checking succeeds
 - All tests pass
-- Successful build completion
+- Build completes successfully
 - Bundle size within limits
 
 ## Documentation Tools
@@ -440,105 +379,101 @@ jobs:
 ### Storybook
 
 **Purpose**: Component documentation and testing
-
-**Location**: `apps/storybook`
-
-**Usage**:
-```bash
-# Start Storybook
-turbo run dev --filter=storybook
-
-# Build static Storybook
-turbo run build --filter=storybook
-```
+**Location**: `apps/storybook/`
+**Command**: `turbo run dev --filter=storybook`
 
 ### API Documentation
 
-**Tools**:
-- JSDoc for code documentation
-- OpenAPI for REST API specs
-- Markdown for general documentation
+**Framework**: Auto-generated from TypeScript types
+**Output**: JSON schemas and OpenAPI specs
 
-## Monitoring & Observability
+### Architecture Decision Records (ADRs)
 
-### Development Monitoring
+**Location**: `docs/projects/*/adrs/`
+**Template**: `docs/general/adr-template.md`
+**Purpose**: Document significant architectural decisions
 
-**Turborepo Dashboard**:
-- Build times and cache hit rates
-- Task dependency visualization
-- Performance metrics
+## Development Workflow
 
-**Package Analysis**:
-- Dependency tree visualization
-- Bundle composition analysis
+### Daily Development
+
+1. **Pull Latest**: `git pull`
+2. **Install Dependencies**: `pnpm install`
+3. **Start Development**: `pnpm run dev`
+4. **Make Changes**: Edit code
+5. **Run Quality Checks**: `pnpm run lint && pnpm run type-check`
+6. **Test Changes**: `pnpm run test`
+7. **Commit**: `git commit -m "feat: description"`
+
+### Adding New Features
+
+1. **Create Branch**: `git checkout -b feature/name`
+2. **Develop Feature**: Write code and tests
+3. **Document Changes**: Update relevant documentation
+4. **Quality Checks**: Ensure all checks pass
+5. **Create PR**: Submit for review
+
+### Performance Monitoring
+
+**Bundle Analysis**:
+- Regular bundle size analysis
 - Performance impact assessment
+- Optimization recommendations
+
+**Build Performance**:
+- Monitor Turborepo cache hit rates
+- Track build time trends
+- Identify optimization opportunities
 
 ## Troubleshooting
 
 ### Common Issues
 
-#### Cache Problems
+**Dependency Resolution**:
 ```bash
 # Clear all caches
 rm -rf node_modules .turbo dist
-bun install
+pnpm install
 
 # Force rebuild
 turbo run build --force
 ```
 
-#### TypeScript Errors
+**TypeScript Errors**:
 ```bash
 # Check TypeScript configuration
-bun run type-check
+pnpm run type-check
 
 # Restart TypeScript service in VS Code
 # CMD/Ctrl + Shift + P -> "TypeScript: Restart TS Server"
 ```
 
-#### Build Failures
-```bash
-# Check build output
-turbo run build --verbose
-
-# Build specific package
-turbo run build --filter=@repo/ui
-```
+**Build Failures**:
+- Check dependency versions
+- Verify TypeScript configuration
+- Clear caches and rebuild
+- Check for circular dependencies
 
 ### Performance Issues
 
 **Slow Builds**:
-- Check Turborepo cache configuration
-- Verify dependency graph efficiency
-- Monitor build parallelization
+- Check Turborepo cache utilization
+- Verify task dependencies are correct
+- Consider task parallelization
 
 **Large Bundle Sizes**:
 - Analyze bundle composition
 - Review dependency usage
 - Implement code splitting
 
-## Future Improvements
+### Getting Help
 
-### Planned Enhancements
-
-**Development Experience**:
-- Enhanced error reporting and debugging
-- Automated dependency updates
-- Performance regression detection
-- Advanced caching strategies
-
-**Quality Assurance**:
-- Visual regression testing
-- Accessibility testing automation
-- Performance budgets and monitoring
-- Security vulnerability scanning
-
-**Build Optimization**:
-- Module federation for micro-frontends
-- Advanced tree-shaking
-- Asset optimization pipelines
-- CDN integration for static assets
+1. Check project-specific documentation
+2. Review existing ADRs for context
+3. Examine similar implementations
+4. Consult team knowledge base
+5. Create new ADR for decisions
 
 ---
 
-This tooling setup provides a robust foundation for development while maintaining flexibility for future enhancements and team growth.
+This tooling setup provides a robust foundation for monorepo development with focus on performance, maintainability, and developer experience.

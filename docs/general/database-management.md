@@ -156,7 +156,7 @@ Better Auth automatically generates SQL for authentication tables, but we manage
 
 1. **Generate Better Auth SQL**:
    ```bash
-   bunx @better-auth/cli generate
+   pnpm dlx @better-auth/cli generate
    ```
 
 2. **Manual Integration Process**:
@@ -321,7 +321,7 @@ atlas schema apply --env dev      # Apply changes
 ```
 
 **Auth Schema Issues**
-1. Regenerate: `bunx @better-auth/cli generate`
+1. Regenerate: `pnpm dlx @better-auth/cli generate`
 2. Edit to include `auth.` schema prefix and proper quoting
 3. Apply: `atlas schema apply --env dev`
 

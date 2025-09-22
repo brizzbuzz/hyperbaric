@@ -9,21 +9,22 @@ Null Horizon provides users with tools to analyze financial data, track investme
 ## Architecture
 
 - **Client**: React application built with Vite
-- **Server**: Node.js/Bun backend API
+- **Server**: Node.js backend API
 - **Database**: PostgreSQL with Atlas schema management
 - **Authentication**: Better Auth integration
 
 ## Getting Started
 
 ```bash
-# Navigate to project
-cd apps/null-horizon
-
-# Install dependencies
-bun install
+# Install dependencies (from repo root)
+pnpm install
 
 # Start development
-bun run dev
+pnpm --filter null-horizon-* run dev
+
+# Or start specific services
+pnpm --filter null-horizon-server run dev
+pnpm --filter null-horizon-client run dev
 ```
 
 ## Project Structure
@@ -44,7 +45,7 @@ apps/null-horizon/
 ## Technology Stack
 
 - **Frontend**: React, TypeScript, Vite, @repo/ui
-- **Backend**: Node.js/Bun, TypeScript, Better Auth
+- **Backend**: Node.js, TypeScript, Better Auth
 - **Database**: PostgreSQL, Atlas migrations, Kysely query builder
 - **Development**: Turborepo, shared TypeScript config
 

@@ -52,7 +52,7 @@ Most applications follow a client-server pattern:
 ```
 ┌─────────────────┐    ┌─────────────────┐
 │   Client (SPA)  │◄──►│  Server (API)   │
-│   - React/Vite  │    │  - Node.js/Bun  │
+│   - React/Vite  │    │  - Node.js      │
 │   - UI Package  │    │  - Database     │
 │   - State Mgmt  │    │  - Auth         │
 └─────────────────┘    └─────────────────┘
@@ -88,7 +88,7 @@ packages/ui/
 - **Tailwind CSS** - Utility-first styling (where applicable)
 
 ### Backend Stack
-- **Node.js/Bun** - JavaScript runtime
+- **Node.js** - JavaScript runtime
 - **TypeScript** - End-to-end type safety
 - **Better Auth** - Authentication and session management
 - **PostgreSQL** - Primary database for all applications
@@ -97,7 +97,7 @@ packages/ui/
 - **Turborepo** - Monorepo orchestration and caching
 - **OXLint** - Fast TypeScript/JavaScript linter
 - **Prettier** - Code formatting
-- **Bun** - Package manager and runtime
+- **pnpm** - Package manager with workspace support
 
 ## Data Flow Architecture
 

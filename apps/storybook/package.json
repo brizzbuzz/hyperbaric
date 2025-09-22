@@ -12,12 +12,12 @@
     "preview": "serve storybook-static"
   },
   "dependencies": {
-    "@repo/ui": "*",
+    "@repo/ui": "workspace:*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@repo/typescript-config": "*",
+    "@repo/typescript-config": "workspace:*",
     "@storybook/addon-docs": "^9.1.3",
     "@storybook/addon-links": "^9.1.3",
     "@storybook/react": "^9.1.3",

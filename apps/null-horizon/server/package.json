@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "start": "PORT=3001 bun run src/index.ts",
+    "start": "PORT=3001 node dist/index.js",
+    "test": "vitest",
+    "test:run": "vitest run",
     "type-check": "tsc --noEmit",
     "lint": "oxlint --type-aware",
     "lint:fix": "oxlint --type-aware --fix",
@@ -25,9 +27,12 @@
   },
   "devDependencies": {
     "@hono/vite-dev-server": "^0.20.1",
-    "@repo/typescript-config": "*",
-    "bun-types": "^1.2.20",
+    "@repo/typescript-config": "workspace:*",
+    "@testcontainers/postgresql": "^11.6.0",
+    "@types/node": "^24.0.0",
+    "testcontainers": "^11.6.0",
     "typescript": "5.5.4",
-    "vite": "^5.0.0"
+    "vite": "^5.0.0",
+    "vitest": "3.2.4"
   }
 }
