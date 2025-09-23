@@ -12,6 +12,7 @@
         buildInputs = with pkgs; [
           nodejs_24
           nodePackages.pnpm
+          postgresql_17
           turbo
         ];
       };
