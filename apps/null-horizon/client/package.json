@@ -12,18 +12,18 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@heroicons/react": "^2.2.0",
+    "@heroicons/react": "catalog:ui",
     "@repo/ui": "workspace:*",
-    "better-auth": "^1.3.7",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "better-auth": "catalog:backend",
+    "react": "catalog:react",
+    "react-dom": "catalog:react"
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
-    "@types/react": "^18.2.43",
-    "@types/react-dom": "^18.2.17",
-    "@vitejs/plugin-react": "^4.2.1",
-    "typescript": "^5.2.2",
-    "vite": "^5.0.8"
+    "@types/react": "catalog:react",
+    "@types/react-dom": "catalog:react",
+    "@vitejs/plugin-react": "catalog:build",
+    "typescript": "catalog:build",
+    "vite": "catalog:build"
   }
 }
