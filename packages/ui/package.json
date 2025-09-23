@@ -21,14 +21,14 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "react": "^18.2.0"
+    "react": "catalog:react"
   },
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
-    "@types/react": "^18.2.43",
-    "typescript": "^5.2.2"
+    "@types/react": "catalog:react",
+    "typescript": "catalog:build"
   },
   "peerDependencies": {
-    "react": "^18.2.0"
+    "react": "catalog:react"
   }
 }
